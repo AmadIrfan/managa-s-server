@@ -1,5 +1,5 @@
 const ratingModel = require("../models/rating_schema");
-async function getRating(req, res) {
+async function 	getRating(req, res) {
 	try {
 		const { id } = req.params;
 		let rating = await ratingModel.find({ active: true, userId: id });
