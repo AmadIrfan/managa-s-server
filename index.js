@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express");
 var path = require("path");
 const cors = require("cors");
@@ -6,7 +7,6 @@ const db = require("./utils/db/mongoDB");
 var createError = require("http-errors");
 const morgan = require("morgan");
 var cookieParser = require("cookie-parser");
-require("dotenv").config();
 const authorRoute = require("./routes/author_route");
 const bookRoute = require("./routes/book_route");
 const chapterRoute = require("./routes/chapter_route");
@@ -15,11 +15,13 @@ var app = express();
 var email =require('./routes/email_rout')
 app.use(cors());
 
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+// routes
 app.use("/author", authorRoute);
 app.use("/book", bookRoute);
 app.use("/chapter", chapterRoute);
